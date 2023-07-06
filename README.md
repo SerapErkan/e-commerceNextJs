@@ -1,2 +1,0 @@
-# e-commerceNextJs
-react-nextJs
