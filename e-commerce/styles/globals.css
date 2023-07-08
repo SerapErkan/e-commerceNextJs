@@ -3,3 +3,27 @@
   padding: 0;
   margin: 0;
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.private {
+  color: #fff !important;
+  background-color: #991ceccb !important;
+  border-color: #9a14f3cb !important;
+}
+.private:hover {
+  background-color: aqua !important;
+}
+
+.register-logo {
+  margin: auto;
+  width: 200px;
+
+  object-fit: contain;
+  border-radius: 50px;
+  border: 2px solid #a250d8cb;
+}

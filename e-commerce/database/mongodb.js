@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const connection = {};
 
-const uri = "mongodb+srv://serapperkan:123@tododb.j4h8uxi.mongodb.net/";
+const uri = "mongodb+srv://e-commerce:1@e-commerce.kemrqvl.mongodb.net/";
 
 export default async function dbConnect() {
     if (connection.isConnected) return;
