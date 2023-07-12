@@ -21,12 +21,17 @@ const Products = () => {
 
   async function getAll() {
     const seller = JSON.parse(localStorage.getItem("seller"));
-    console.log(seller);
+
     const result = await axios.post("/api/admin/products/getAll", {
       sellerId: seller._id,
     });
     setProducts(result.data);
-    console.log("products", products);
+    console.log(products);
+  }
+
+  async function changeStatus(_id) {
+    await axios.post("/api/admin/products/changeStatus", { _id: _id });
+    getAll();
   }
 
   return (
@@ -40,14 +45,14 @@ const Products = () => {
           </Link>
         </div>
         <div className="col-lg-4 col-md-4 col-9">
-          <input
+          {/* <input
             type="search"
             className="form-control"
             placeholder="Aranacak değer..."
             name="search"
-            value={search}
-            onChange={() => setSearch(e.target.value)}
-          />
+            // value={search}
+            // onChange={() => setSearch(e.target.value)}
+          /> */}
         </div>
       </div>
 
@@ -58,8 +63,10 @@ const Products = () => {
               <th>#</th>
               <th>Ürün Resmi</th>
               <th>Ürün Adı</th>
+              <th>kategori</th>
               <th>Satış Fiyatı</th>
               <th>Stok Adedi</th>
+              <th>Durum</th>
               <th>İşlemler</th>
             </tr>
           </thead>
@@ -84,8 +91,31 @@ const Products = () => {
                     </div>
                   </td>
                   <td>{val.name}</td>
+                  <td>{val.categories[0].name} </td>
                   <td>{val.price}</td>
                   <td>{val.stock}</td>
+                  <td className="text-center">
+                    {val.isActive ? (
+                      <button
+                        onClick={() => changeStatus(val._id)}
+                        className="btn btn-outline-danger btn-sm"
+                        title="Satıştan Kaldır"
+                        type="button"
+                      >
+                        Kaldır <i className="fa fa-x mx-1"></i>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => changeStatus(val._id)}
+                        className="btn btn-outline-info btn-sm"
+                        title="Satışa Al"
+                        type="button"
+                      >
+                        Ekle<i className="fa fa-check mx-1"></i>
+                      </button>
+                    )}
+                  </td>
+
                   <td>
                     <button
                       className="btn btn-warning theme btn-sm m-1"

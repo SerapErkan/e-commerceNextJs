@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
     imageUrls: Array,
     mainImageUrl: String,
     categoryId: String,
-    isActiveRol: Boolean,
+    isActive: Boolean,
 });
 
 export default mongoose.models.Product || mongoose.model("Product", productSchema);

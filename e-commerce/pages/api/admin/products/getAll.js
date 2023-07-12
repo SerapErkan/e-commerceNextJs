@@ -8,7 +8,27 @@ export default function handle(req, res) {
         dbConnect();
 
         const { sellerId } = req.body;
-        const products = await Product.find({ sellerId: sellerId }).sort({ name: 1 });
+
+        // const products = await Product.find({ sellerId: sellerId }).sort({ name: 1 });
+        // res.json(products);
+
+        const products = await Product.aggregate([
+            {
+                $lookup: {
+                    from: "categories",
+                    localField: "categoryId",
+                    foreignField: "_id",
+                    as: "categories"
+                }
+            },
+            {
+                $match: {
+                    sellerId: sellerId
+                }
+            }
+        ]).sort({ name: 1 })
         res.json(products);
+
+
     });
 }

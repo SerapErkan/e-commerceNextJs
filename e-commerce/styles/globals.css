@@ -89,3 +89,15 @@ img {
   width: 400px;
   height: 200px;
 }
+
+.categories-uı {
+  font-family: var(--font-poppins);
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #f5f5f5e0;
+  color: var(--theme);
+}
+.categories-uı:hover {
+  border-right: 5px solid var(--theme);
+  color: var(--theme);
+}
