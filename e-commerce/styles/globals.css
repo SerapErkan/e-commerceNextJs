@@ -1,3 +1,9 @@
+:root {
+  --font-poppins: "Poppins", sans-serif;
+  --theme: #8640e0f6;
+  --transition: all 0.5s ease-in;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -12,11 +18,12 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .private {
   color: #fff !important;
-  background-color: #991ceccb !important;
-  border-color: #9a14f3cb !important;
+  background-color: var(--theme) !important;
+  border-color: var(--theme) !important;
+  transition: var(--transition);
 }
 .private:hover {
-  background-color: aqua !important;
+  transform: scale(1.2);
 }
 
 .register-logo {
@@ -25,5 +32,60 @@ input[type="number"]::-webkit-outer-spin-button {
 
   object-fit: contain;
   border-radius: 50px;
-  border: 2px solid #a250d8cb;
+  border: 2px solid var(--theme);
+}
+
+.navbar-color {
+  background-color: var(--theme) !important ;
+}
+
+.nav-item * {
+  color: #fff !important;
+  font-size: 1rem !important;
+  font-family: var(--font-poppins);
+  font-weight: 200 !important;
+}
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 1.3rem !important;
+}
+
+.dropdown-menu * {
+  color: var(--theme) !important;
+}
+
+.product-main-img {
+  width: 150px;
+  height: 150px;
+}
+.product-img {
+  max-width: 30px;
+  object-fit: contain;
+  object-position: center;
+}
+.nav-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+.theme {
+  background: var(--theme) !important;
+  border: none !important;
+  color: white !important;
+  margin: auto;
+}
+.theme.br {
+  border-radius: 50%;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.imageUrlsDiv {
+  width: 400px;
+  height: 200px;
 }
