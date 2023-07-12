@@ -1,5 +1,12 @@
+import withAdminLayout from "@/components/withAdminLayout";
 import React from "react";
 
-export const index = () => {
-  return <h1>e-Ticaret Admin Page</h1>;
+const index = () => {
+  return (
+    <div>
+      <h1>e-ticaret adminPage index</h1>
+    </div>
+  );
 };
+
+export default withAdminLayout(index);

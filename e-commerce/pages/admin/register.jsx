@@ -11,6 +11,8 @@ export default function register() {
   const [inputs, setInputs] = useState({});
   const router = useRouter();
 
+  const [selectedFolder, setSelectedFolder] = useState(null);
+
   const handleChange = (e) => {
     let identityNumberPattern = /^\d{10,11}$/;
     let passwordPattern =
@@ -85,6 +87,7 @@ export default function register() {
 
   async function register() {
     console.log(inputs);
+
     const result = await axios
       .post("/api/admin/auth/register", inputs)
       .then((res) => {
@@ -293,4 +296,18 @@ export default function register() {
       </div>
     </div>
   );
+}
+
+{
+  /* <input
+  onChange={handleChange}
+  value={inputs["imageUrl"] || ""}
+  className="form-control"
+  name="imageUrl"
+  id="imageUrl"
+  type="file"
+  accept="image/*"
+  required
+  ref={(ref) => (elRefs.current["imageUrl"] = ref)}
+/>; */
 }

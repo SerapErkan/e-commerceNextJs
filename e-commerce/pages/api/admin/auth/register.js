@@ -14,7 +14,6 @@ export default function handle(req, res) {
         else {
             seller._id = uuidv4();
             await seller.save();
-
             res.json({ message: "Başarılı!" });
         }
     });
