@@ -1,12 +1,13 @@
 
 import React from 'react'
-import withUILayout from './withUILayout';
+import UINavbar from "@/components/uiNavbar"
+
 
 function UILayout({ children }) {
     return (
         <div className="">
-            {/* <UINavbar seller={seller} /> */}
-            <h2>uı uiLayout</h2>
+
+            <UINavbar />
             <section className="mt-2">
                 {children}
             </section>

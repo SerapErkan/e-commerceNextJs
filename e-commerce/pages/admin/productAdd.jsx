@@ -12,12 +12,7 @@ function productAdd() {
     isActive: true,
     sellerId: "",
   });
-  const [categories, setCategories] = useState([
-    "Moda",
-    "Spor",
-    "Anne-bebek",
-    "Ev yasam",
-  ]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     getCategories();
