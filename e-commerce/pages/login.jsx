@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import withUILayout from "@/components/withUILayout";
 
-export default function login() {
+function login() {
   const elRefs = useRef({});
   const [inputs, setInputs] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -66,18 +67,18 @@ export default function login() {
 
   return (
     <div className="container row text-center mx-auto mt-5">
-      <div className="mx-auto  col-sm-6 col-md-6 col-lg-6 border p-5  rounded mt-5">
+      <div className="mx-auto   col-lg-6 themeDiv  p-5  mt-5">
         <h1 className="text-center ">Kullanıcı Griş Sayfası</h1>
         <p className="text-center">Kullanıcı Bilgileri</p>
 
         <form
-          className="row g-3 d-flex  justfy-content-center"
+          className="row g-3 p-5 "
           noValidate
           autoComplete="off"
           onSubmit={handleSubmit}
           ref={(ref) => (elRefs.current["form"] = ref)}
         >
-          <div className="form-floating col-sm-10  mb-3">
+          <div className="form-floating col-sm-12  mb-3">
             <input
               onChange={handleChange}
               value={inputs["emailOrPhoneNumber"] || ""}
@@ -91,7 +92,7 @@ export default function login() {
             <label htmlFor="emailOrPhoneNumber">Email veya Numara</label>
             <div className="invalid-feedback">Geçerli bir email giriniz </div>
           </div>
-          <div className="form-floating col-sm-10  mb-3">
+          <div className="form-floating col-sm-12  mb-3">
             <input
               onChange={handleChange}
               value={inputs["password"] || ""}
@@ -109,10 +110,10 @@ export default function login() {
               Geçerli bir password giriniz{" "}
             </div>
           </div>
-          <div className="form-floating col-sm-10  mb-3">
+          <div className="form-floating col-sm-12  mb-3">
             <button
               type="submit"
-              className="btn btn-primary private w-75"
+              className="btn btn-primary private w-50"
               disabled={!isValid}
             >
               login
@@ -123,3 +124,4 @@ export default function login() {
     </div>
   );
 }
+export default withUILayout(login);

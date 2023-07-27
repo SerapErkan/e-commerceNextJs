@@ -24,5 +24,8 @@ export default function handle(req, res) {
             await user.save();
             res.json(user);
         }
+        else {
+            res.status(500).json({ message: "Kullanıcı eklenmedi!" });
+        }
     });
 }

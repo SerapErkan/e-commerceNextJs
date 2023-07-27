@@ -8,15 +8,18 @@ import React, { useEffect, useRef, useState } from "react";
 function ProductDetail() {
   const router = useRouter();
   const { id } = router.query;
-  const [isValid, setIsValid] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [product, setProduct] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [amount, setAmount] = useState();
+  const [user, setUser] = useState();
+
+
 
   useEffect(() => {
     if (router.isReady) {
       getElementById(router.query.id);
+      setUser(JSON.parse(localStorage.getItem("user")));
 
     }
   }, [router.isReady]);
@@ -24,7 +27,6 @@ function ProductDetail() {
 
   useEffect(() => {
     setAmount(quantity * product.price);
-
   }, [quantity])
 
 
@@ -42,11 +44,17 @@ function ProductDetail() {
   }
 
   function quantityPlus() {
-    const quantityNew = quantity + 1;
-    setQuantity(quantityNew)
+    let quantityNew = 0;
+    if (quantity < product.stock) {
+      quantityNew = quantity + 1;
+      setQuantity(quantityNew)
+    }
+    else {
+      console.log("fazla ürün ekleyemezsiniz")
+    }
+
   }
   function quantityMinus() {
-
     const quantityNew = quantity - 1;
 
     if (quantityNew > 0) {
@@ -59,6 +67,16 @@ function ProductDetail() {
   }
 
 
+  async function addShoppingCart() {
+    const data = {
+      userId: user._id,
+      productId: router.query.id,
+      quantity: quantity
+    };
+
+    const result = await axios.post("/api/ui/shoppingCarts/add", data);
+    router.push("/");
+  }
 
   return (
     <div>
@@ -90,6 +108,7 @@ function ProductDetail() {
               <button
                 type="button"
                 className="  addToCart  px-4 me-md-2 btn-lg"
+                onClick={addShoppingCart}
               >
                 Sepete Ekle
               </button>

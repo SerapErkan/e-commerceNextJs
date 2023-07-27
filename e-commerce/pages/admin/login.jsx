@@ -67,7 +67,7 @@ export default function login() {
   return (
     <div className="container row text-center mx-auto mt-5">
       <div className="mx-auto  col-sm-6 col-md-6 col-lg-6 border p-5  rounded mt-5">
-        <h1 className="text-center">Firma Kayıt Sayfası</h1>
+        <h1 className="text-center">Firma Griş Sayfası</h1>
         <p className="text-center">Firmanıza ait bilgileri doldurun</p>
 
         <form

@@ -40,13 +40,14 @@ function Home() {
     getAllProducts(categoryId, filterType);
     setSelectedCategoryId(categoryId);
     activeclassNameRemove();
-    elRef.current["category-", index].classNameList.add("active");
+    elRef.current["category-", index].classList.add("active");
 
 
   }
   function activeclassNameRemove() {
     for (let key in elRef.current) {
-      elRef.current[key].classNameList.remove("active")
+      console.log("key", elRef.current[key]);
+      elRef.current[key].classList.remove("active");
     }
   }
 
@@ -81,9 +82,11 @@ function Home() {
     <>
       <div className="container-fuild	">
         <div className="row m-5">
-          <div className="col-12 d-flex justify-content-end" >
 
-            <div className="col-8 my-3">
+
+          <div className="col-sm-2  d-lg-block d-md-block d-none g-2  mx-2 " >
+
+            <div className="filter mx-2 my-4 p-4">
               <input
                 type="search"
                 className="form-control"
@@ -92,9 +95,7 @@ function Home() {
                 onChange={search}
               />
             </div>
-
-
-            <div className="col-2 my-3 ms-2">
+            <div className="filter mx-2 my-4 p-4">
               <select
                 name="filter"
                 id=""
@@ -109,10 +110,7 @@ function Home() {
                 <option value={"3"}>En Çok Begenilen</option> */}
               </select>
             </div>
-          </div>
 
-
-          <div className="col-sm-2  d-lg-block d-md-block d-none">
             <div className="categories-uı active p-3 m-2  " onClick={() => selectedCategory("0", -1)} ref={(ref) => elRef.current["category-", -1] = ref}> Tümü - {products.length}</div>
             {
               categories.map((val, index) => {
@@ -132,22 +130,30 @@ function Home() {
 
 
 
-          </div>
-          <div className="col-sm-10  ">
 
-            <div className="row text-center" >
+          </div>
+
+          <div className="col-sm-9  ">
+
+            <div className="row " >
               {
                 products.map((val, index) => {
                   return (
                     <div key={index} className="col-sm-12 col-md-4 col-lg-3">
-                      <div className="card" onClick={() => detail(val._id)} >
+                      <div className="productCard text-center" onClick={() => detail(val._id)} >
                         <img src={val.mainImageUrl} />
+                        <h5 className="productName mt-4"> {val.name}</h5>
                         <hr></hr>
-                        <h6 className="text-center"> {val.name}</h6>
-                        <h6 className="text-center"> stok: {val.stock}</h6>
-                        <h6 className="text-center"> fiyat: {val.price}</h6>
-                        <h6 className="text-center"> {val.category[0].name}</h6>
-                        <h6 className="text-center"> {val.seller[0].name}</h6>
+                        <h6 className="price"> Fiyat:<span>{val.price}
+                        </span> </h6>
+
+                        <h6 className="text-start"> {val.category[0].name}</h6>
+                        <h6 className="text-start"> Satıcı:
+                          <span className="ms-2" >
+                            {val.seller[0].name.toUpperCase()}
+                          </span> -
+                          Stok: {val.stock}</h6>
+
                       </div>
                     </div>
 
