@@ -9,8 +9,8 @@ export default function handle(req, res) {
 
         dbConnect();
         const { userId } = req.body;
-        const count = await ShoppingCart.find({ userId: userId }).count();
-        res.json({ count: count });
+        const count = await ShoppingCart.find({ userId: userId });
+        res.json({ count });
 
     })
 }

@@ -7,6 +7,7 @@ function ShoppingCart() {
   const [shoppingCarts, setShoppingCarts] = useState([]);
   const [user, setUser] = useState({});
   const [quantity, setQuantity] = useState({});
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -15,6 +16,14 @@ function ShoppingCart() {
       getAll(user);
     }
   }, []);
+
+  useEffect(() => {
+    let t = 0;
+    for (let val of shoppingCarts) {
+      t += val.quantity * val.products[0]?.price;
+    }
+    setTotal(t);
+  }, shoppingCarts);
 
   async function getAll(user) {
     const result = await axios.post("/api/ui/shoppingCarts/getAll", {
@@ -73,59 +82,68 @@ function ShoppingCart() {
       <div className="d-flex  justify-content-center">
         <div className="col-8 me-5">
           <div className="my-3 p-3 bg-body rounded shadow-lg shoppingCarts">
-            <h6 className=" pb-2 mb-0">Sepetim</h6>
             {shoppingCarts.map((val, index) => {
               return (
-                <div
-                  className=" row d-flex align-items-center  p-3  border-top pb-3 "
-                  key={index}
-                >
-                  <div className=" col-sm-12 col-md-3">
-                    <img
-                      src={val.products[0]?.mainImageUrl}
-                      className="shoppingCartsImg me-5"
-                    />
+                <>
+                  {" "}
+                  <h6 className=" pb-2 mb-0">Sepetim</h6>{" "}
+                  <div
+                    className=" row d-flex align-items-center  p-3  border-top pb-3 "
+                    key={index}
+                  >
+                    <div className=" col-sm-12 col-md-3">
+                      <img
+                        src={val.products[0]?.mainImageUrl}
+                        className="shoppingCartsImg me-5"
+                      />
+                    </div>
+                    <div className=" col-sm-12 col-md-3">
+                      {" "}
+                      <p>{val.products[0]?.name} -@satıcı</p>
+                    </div>
+                    <div className=" col-sm-12 col-md-2">
+                      <button
+                        className="quantityBtnPlus "
+                        onClick={() => quantityPlus(val)}
+                      >
+                        +
+                      </button>
+                      <span className="quantitySpan p-2">{val.quantity}</span>
+                      <button
+                        className="quantityBtnMinus "
+                        onClick={() => quantityMinus(val)}
+                      >
+                        -
+                      </button>
+                    </div>
+                    <div className=" col-sm-12 col-md-3">
+                      <p className="priceDetail">
+                        <span className="priceDetailSpan ">
+                          Fiyat:{val.products[0]?.price} ₺ Toplam :{total}₺
+                        </span>
+                      </p>
+                    </div>
+                    <div className=" col-sm-12 col-md-1">
+                      {" "}
+                      <button
+                        className="btn theme"
+                        type="button"
+                        onClick={() => removeById(val)}
+                      >
+                        <i className="fa-solid fa-x"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div className=" col-sm-12 col-md-4">
-                    {" "}
-                    <p>{val.products[0]?.name} -@satıcı</p>
-                  </div>
-                  <div className=" col-sm-12 col-md-2">
-                    <button
-                      className="quantityBtnPlus "
-                      onClick={() => quantityPlus(val)}
-                    >
-                      +
-                    </button>
-                    <span className="quantitySpan p-2">{val.quantity}</span>
-                    <button
-                      className="quantityBtnMinus "
-                      onClick={() => quantityMinus(val)}
-                    >
-                      -
-                    </button>
-                  </div>
-                  <div className=" col-sm-12 col-md-2">
-                    <p className="priceDetail">
-                      <span className="priceDetailSpan">50₺ </span>{" "}
-                    </p>
-                  </div>
-                  <div className=" col-sm-12 col-md-1">
-                    {" "}
-                    <button
-                      className="btn theme"
-                      type="button"
-                      onClick={() => removeById(val)}
-                    >
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </div>
-                </div>
+                </>
               );
             })}
 
             {shoppingCarts == "" ? (
-              <h5 className="text-center">Sepete Ürün Ekle </h5>
+              <h5 className="text-center text-secondary  p-5">
+                {" "}
+                <i class="fa-regular fa-face-grin-wide fa-2xl me-2"></i>
+                Sepete Ürün Ekle{" "}
+              </h5>
             ) : (
               ""
             )}

@@ -31,7 +31,16 @@ function uiNavbar() {
     async function cartCount(user) {
 
         const result = await axios.post("/api/ui/shoppingCarts/getCount", { userId: user._id })
-        setShoppingCartCount(result.data.count);
+        productQuantityCalculation(result.data.count)
+
+    }
+
+    function productQuantityCalculation(data) {
+        let counter = 0;
+        for (let count of data) {
+            counter += count.quantity
+        }
+        setShoppingCartCount(counter);
 
 
     }
