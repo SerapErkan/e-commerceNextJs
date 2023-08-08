@@ -1,13 +1,18 @@
 :root {
   --font-poppins: "Poppins", sans-serif;
-  --theme: #8640e0f6;
+  --theme: #353941;
   --transition: all 0.3s ease-in;
   --theme2: #ffc814;
   --text-color-grey: #7c7b7b;
+
+  --primary: 12, 131, 255;
+  --danger: 239, 68, 68;
+  --success: 5, 150, 105;
+  --warning: 245, 134, 70;
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   padding: 0;
   margin: 0;
   font-family: var(--font-poppins);
@@ -25,6 +30,11 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+td {
+  /* tabloların içindeki değerlei ortala */
+  vertical-align: middle !important;
 }
 
 /* // loadingBar */
@@ -342,7 +352,7 @@ img {
 /* --index 3000/ */
 .productCard {
   border-radius: 20px;
-  height: 450px;
+  height: 400px;
   padding: 20px;
   margin: 10px;
   box-shadow: 0 4px 4px 0 var(--theme2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
@@ -393,11 +403,9 @@ h6.price span {
 
 .categories-uı {
   font-family: var(--font-poppins);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px 0 var(--theme2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
   color: #2f2f2fa4;
 }
 .categories-uı.active,
@@ -412,7 +420,7 @@ h6.price span {
   font-weight: 600;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 4px 0 var(--theme2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 4px 0 var(--theme), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
   color: #2f2f2f;
 }
 /* --END */
@@ -426,3 +434,105 @@ h6.price span {
   width: 100px;
 }
 /*--end--*/
+
+/* //span */
+.spanSuccess {
+  background-color: rgba(var(--success), 0.1);
+  color: rgb(var(--success));
+  border-radius: 5px;
+  padding: 5px 7px !important;
+}
+
+.spanPrimary {
+  background-color: rgba(var(--primary), 0.1);
+  color: rgb(var(--primary));
+  border-radius: 5px;
+  padding: 5px 7px !important;
+}
+
+.spanDanger {
+  background-color: rgba(var(--danger), 0.1);
+  color: rgb(var(--danger));
+  border-radius: 5px;
+  padding: 5px 7px !important;
+}
+.spanWarning {
+  background-color: rgba(var(--warning), 0.1);
+  color: rgb(var(--danger));
+  border-radius: 5px;
+  padding: 5px 7px !important;
+}
+
+/* primary #0c83ff */
+/* danger  #EF4444 */
+/* success #059669 */
+/* warning #f58646 */
+
+/*order-Detail*/
+
+.truck {
+  color: rgba(48, 124, 224, 0.87);
+  font-size: 2rem;
+  text-align: start !important;
+  position: relative;
+  animation: moveRightLeft 5s infinite;
+  width: 100px;
+  padding-bottom: 10px;
+}
+.way {
+  margin: 4px 0;
+  border-bottom: 3px dashed yellowgreen;
+  animation: moveWay 5s infinite;
+  width: 100%;
+  position: relative;
+}
+@keyframes moveWay {
+  0% {
+    width: 0;
+    border-bottom-color: red;
+  }
+  50% {
+    border-bottom-color: rgba(48, 124, 224);
+  }
+  100% {
+    width: 100%;
+    border-bottom-color: yellowgreen;
+  }
+}
+
+@keyframes moveRightLeft {
+  0% {
+    left: 0;
+    color: red;
+  }
+  50% {
+    color: rgba(48, 124, 224);
+  }
+  100% {
+    left: calc(100% - 100px);
+    color: yellowgreen;
+  }
+}
+.way-span-container {
+  height: 40px;
+  min-width: 100px;
+  margin-top: 5px;
+}
+.way-span {
+  position: relative;
+  top: 30px;
+  left: 0;
+  padding: 1px 15px;
+  border-radius: 50%;
+}
+.step-1 {
+  background-color: red;
+}
+.step-2 {
+  background-color: rgb(0, 153, 255);
+}
+.step-3 {
+  background-color: yellowgreen;
+}
+
+/* order-Detail end */

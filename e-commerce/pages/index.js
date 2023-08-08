@@ -24,7 +24,6 @@ function Home() {
   async function getAllProducts(categoryId = "0", filter = "") {
     const result = await axios.post("/api/ui/products/getAll", { categoryId: categoryId, filter: filter });
     setProducts(result.data);
-    console.log(result.data);
     setOrgProducts(result.data);
 
   }
@@ -46,7 +45,7 @@ function Home() {
   }
   function activeclassNameRemove() {
     for (let key in elRef.current) {
-      console.log("key", elRef.current[key]);
+      // console.log("key", elRef.current[key]);
       elRef.current[key].classList.remove("active");
     }
   }
@@ -64,10 +63,8 @@ function Home() {
   }
 
   function changeFilterType(e) {
-
     setFilterType(e.target.value);
     console.log(filterType, e.target.value);
-
     getAllProducts(selectedCategoryId, e.target.value);
   }
 
@@ -93,6 +90,7 @@ function Home() {
                 placeholder="Aranacak değer..."
                 name="search"
                 onChange={search}
+                autoComplete="false"
               />
             </div>
             <div className="filter mx-2 my-4 p-4">
@@ -111,25 +109,28 @@ function Home() {
               </select>
             </div>
 
-            <div className="categories-uı active p-3 m-2  " onClick={() => selectedCategory("0", -1)} ref={(ref) => elRef.current["category-", -1] = ref}> Tümü - {products.length}</div>
-            {
-              categories.map((val, index) => {
-                return (
-                  <div key={index}
-                    className="categories-uı p-3 m-2 "
-                    onClick={() => selectedCategory(val._id, index)}
-                    ref={(ref) => elRef.current["category-", index] = ref}
-                  > {val.name}-
-                    {val.products.length}
+            <div className="filter p-2 ">
+              <div className="active  p-3 m-2 categories-uı   " onClick={() => selectedCategory("0", -1)} ref={(ref) => elRef.current["category-", -1] = ref}> Tümü - {products.length}</div>
+              {
+                categories.map((val, index) => {
+                  return (
+                    <div key={index}
+                      className="categories-uı p-3 m-2 "
+                      onClick={() => selectedCategory(val._id, index)}
+                      ref={(ref) => elRef.current["category-", index] = ref}
+                    > {val.name}-
+                      {val.products.length}
 
-                  </div>
-                )
-              })
+                    </div>
+                  )
+                })
 
-            }
+              }
 
 
 
+
+            </div>
 
           </div>
 

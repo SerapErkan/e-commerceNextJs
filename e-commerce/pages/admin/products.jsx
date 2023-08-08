@@ -47,7 +47,6 @@ const Products = () => {
     let searchValue = e.target.value;
     searchValue = searchValue.toString().replace(",", ".");
 
-    console.log(orgProducts);
     const newProducts = orgProducts.filter(
       (p) =>
         p.name.toLowerCase().includes(searchValue) ||

@@ -93,7 +93,7 @@ function uiNavbar() {
                                     <ul className="dropdown-menu text-small" >
                                         <li><a className="dropdown-item" href="#">Profile</a></li>
                                         <li><a className="dropdown-item" href="#">Yorumlar</a></li>
-                                        <li><a className="dropdown-item" href="#">Siparişler</a></li>
+                                        <li><Link href="/orders" className="dropdown-item " >Siparişler </Link></li>
                                         <li><a className="dropdown-item" onClick={logout}>Çıkış</a></li>
                                     </ul>
                                 </div>
