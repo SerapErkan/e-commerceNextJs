@@ -3,6 +3,7 @@
   --theme: #353941;
   --transition: all 0.3s ease-in;
   --theme2: #ffc814;
+  --theme3: #36f8ff3f;
   --text-color-grey: #7c7b7b;
 
   --primary: 12, 131, 255;
@@ -35,6 +36,10 @@ input[type="number"]::-webkit-outer-spin-button {
 td {
   /* tabloların içindeki değerlei ortala */
   vertical-align: middle !important;
+}
+
+body {
+  background-color: var(--theme) !important;
 }
 
 /* // loadingBar */
@@ -475,14 +480,14 @@ h6.price span {
   font-size: 2rem;
   text-align: start !important;
   position: relative;
-  animation: moveRightLeft 5s infinite;
+  animation: moveRightLeft 5s 1 forwards;
   width: 100px;
   padding-bottom: 10px;
 }
 .way {
   margin: 4px 0;
   border-bottom: 3px dashed yellowgreen;
-  animation: moveWay 5s infinite;
+  animation: moveWay 5s 1 forwards;
   width: 100%;
   position: relative;
 }

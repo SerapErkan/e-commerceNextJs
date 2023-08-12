@@ -5,10 +5,13 @@ import mongoose from "mongoose";
 const categorySchema = new mongoose.Schema({
     _id: String,
     name: String,
-    isActive: Boolean
+    isActive: Boolean,
+    className: String,
 
 
 });
+
+
 
 
 

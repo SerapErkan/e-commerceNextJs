@@ -3,7 +3,9 @@ import axios from "axios";
 import { Router, useRouter } from "next/router";
 
 import { useEffect, useRef, useState } from "react";
+import Category from "./category";
 
+import styles from "../styles/Home.module.css"
 function Home() {
 
   const [products, setProducts] = useState([]);
@@ -11,8 +13,10 @@ function Home() {
   const [selectedCategoryId, setSelectedCategoryId] = useState("0");
   const [orgProducts, setOrgProducts] = useState([]);
   const [filterType, setFilterType] = useState("");
+
   const elRef = useRef([]);
   const router = useRouter();
+  const elementFilter = document.getElementById("filterId");
 
   useEffect(() => {
     getAllCategories();
@@ -20,6 +24,14 @@ function Home() {
 
   }, [])
 
+  useEffect(() => {
+    if (filterType == "0" || filterType == "1") {
+      elementFilter.className = "d-none"
+    }
+
+
+
+  }, [filterType])
 
   async function getAllProducts(categoryId = "0", filter = "") {
     const result = await axios.post("/api/ui/products/getAll", { categoryId: categoryId, filter: filter });
@@ -62,116 +74,221 @@ function Home() {
     setProducts(newProducts);
   }
 
-  function changeFilterType(e) {
-    setFilterType(e.target.value);
-    console.log(filterType, e.target.value);
-    getAllProducts(selectedCategoryId, e.target.value);
+  function changeFilterType(value) {
+    setFilterType(value);
+    console.log(filterType, value);
+    getAllProducts(selectedCategoryId, value);
   }
 
   function detail(id) {
     router.push("/product-detail/" + id);
   }
 
+  function filter() {
+
+    elementFilter.className = "";
+
+  }
 
 
 
   return (
     <>
-      <div className="container-fuild	">
-        <div className="row m-5">
 
 
-          <div className="col-sm-2  d-lg-block d-md-block d-none g-2  mx-2 " >
 
-            <div className="filter mx-2 my-4 p-4">
-              <input
-                type="search"
-                className="form-control"
-                placeholder="Aranacak değer..."
-                name="search"
-                onChange={search}
-                autoComplete="false"
-              />
+      <div className={styles.divSlider}>
+        {/* <!-- ------slider--- --> */}
+        <div class="container">
+          <div id="myCarousel" class="carousel slide mb-5 " data-bs-ride="carousel" data-bs-theme="light">
+            <div class="carousel-indicators ">
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active"
+                aria-current="true"></button>
             </div>
-            <div className="filter mx-2 my-4 p-4">
-              <select
-                name="filter"
-                id=""
-                className="form-control"
-                value={filterType}
-                onChange={changeFilterType}
-              >
-                <option value="">Filitrele ...</option>
-                <option value="0">Artan Sıralama</option>
-                <option value="1">Azalan Sıralama</option>
-                {/* <option value={"2"}>En Çok Yorum Alan</option>
-                <option value={"3"}>En Çok Begenilen</option> */}
-              </select>
+            <div class="carousel-inner ">
+              <div class="carousel-item text-center">
+
+                <div class="container ">
+                  <img src="/images/1.png" class=" bd-placeholder-img " aria-hidden=" true"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" />
+                  <div class="carousel-caption text-start  ps-5 ms-5 ">
+                    <h1>Canlı Destek.</h1>
+                    <p class="opacity-75">Tüm konu başlıklarında chat yöntemiyle canlı destek alabilirsiniz. </p>
+                    <p><a class="btn btn-lg btn-outline-warning p-3" href="#">Çok Yakında :)</a></p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="carousel-item">
+
+                <div class="container mb-5">
+                  <img src="/images/Home.png" class="imgSlider bd-placeholder-img" aria-hidden="true"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" />
+
+                  <div class="carousel-caption">
+                    <span class="badge bg-primary-subtle border border-primary-subtle text-primary-emphasis rounded-pill p-5 me-2">Sepete En Çok Eklenen</span>
+                    <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill p-5 me-2">En Çok Öne Çıkanlar</span>
+                    <span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill p-5 me-2">İndirimli Flaş Ürünler</span>
+
+                    <p class="mb-5 mt-3"> Giyim, bilgisayar, cep telefonu, kozmetik, beyaz eşya, süpermarket & daha aradığın yüz binlerce indirimli ürün en uygun fiyatlar ve kampanyalarla ...</p>
+                    <p><a class="btn btn-lg btn-outline-warning p-3" href="#">Üye Grişi</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item active">
+
+                <div class="container">
+                  <img src="/images/2.png" class="imgSlider bd-placeholder-img" aria-hidden="true"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" />
+
+                  <div class="carousel-caption text-end pe-5 me-5  ">
+                    <h1>Hemen kayıt olun! </h1>
+                    <p>İşletme kaydını yaparak binlerce firma arasında sizde yerinizi alın!</p>
+
+                    <p><a class="btn btn-lg btn-outline-warning p-3" href="#">Firma Kayıt</a></p>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="filter p-2 ">
-              <div className="active  p-3 m-2 categories-uı   " onClick={() => selectedCategory("0", -1)} ref={(ref) => elRef.current["category-", -1] = ref}> Tümü - {products.length}</div>
-              {
-                categories.map((val, index) => {
-                  return (
-                    <div key={index}
-                      className="categories-uı p-3 m-2 "
-                      onClick={() => selectedCategory(val._id, index)}
-                      ref={(ref) => elRef.current["category-", index] = ref}
-                    > {val.name}-
-                      {val.products.length}
-
-                    </div>
-                  )
-                })
-
-              }
-
-
-
-
-            </div>
-
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
+        </div>
 
-          <div className="col-sm-9  ">
+      </div >
 
-            <div className="row " >
-              {
-                products.map((val, index) => {
-                  return (
-                    <div key={index} className="col-sm-12 col-md-4 col-lg-3">
-                      <div className="productCard text-center" onClick={() => detail(val._id)} >
-                        <img src={val.mainImageUrl} />
-                        <h5 className="productName mt-4"> {val.name}</h5>
-                        <hr></hr>
-                        <h6 className="price"> Fiyat:<span>{val.price}
-                        </span> </h6>
+      <div className={styles.divContainer}>
 
-                        <h6 className="text-start"> {val.category[0].name}</h6>
-                        <h6 className="text-start"> Satıcı:
-                          <span className="ms-2" >
-                            {val.seller[0].name.toUpperCase()}
-                          </span> -
-                          Stok: {val.stock}</h6>
+        <div className={styles.search}>
+          <input
+            type="search"
+            className="form-control"
+            placeholder="Aranacak değer..."
+            name="search"
+            onChange={search}
+            autoComplete="false"
+          />
+        </div>
+        <span className={styles.filter}>
+          <span onClick={filter}> <i class="fa-solid fa-filter me-2" ></i> Sırala</span>
+
+
+          <ul className="d-none " id="filterId">
+            <li><button onClick={() => changeFilterType("0")} >Artan Sıralama</button></li>
+            <li><button onClick={() => changeFilterType("1")}>Azalan Sıralama</button></li>
+          </ul>
+
+
+
+
+
+        </span>
+        <div className={styles.categoryDiv}>
+          <span className="text-white"> {products.length} ürün bulundu</span>
+
+
+          <ul>
+            <li className={`${styles.categoriesList} active  p-3 my-1 `} onClick={() => selectedCategory("0", -1)} ref={(ref) => elRef.current["category-", -1] = ref} >
+              <i class="fa-solid fa-grip"></i><span>Tümü</span></li>
+            {
+              categories.map((val, index) => {
+                return (
+                  <li key={index}
+                    className={styles.categoriesList}
+                    onClick={() => selectedCategory(val._id, index)}
+                    ref={(ref) => elRef.current["category-", index] = ref}
+                  > <i className={val.className}></i>
+                    {/* {val.products.length} */}
+                    <span>  {val.name}</span>
+
+
+                  </li>
+                )
+              })
+
+            }
+          </ul>
+        </div>
+        <div className={styles.productDiv}>
+
+          <div class="py-5  ">
+            <div className="container-xxl ">
+
+
+
+
+
+
+
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3  row-cols-lg-4  g-4  d-flex justify-content-center">
+
+
+                {
+
+                  products.map((val, index) => {
+                    return (
+                      <div className="col " key={index} >
+                        <div className={styles.cardProduct} onClick={() => detail(val._id)}>
+                          <span className={styles.cardFavoriIcon}> <i class="fa-regular fa-heart fa-xl pt-3"></i></span>
+                          <img className={styles.cardImage} src={val.mainImageUrl} />
+                          <div class="card-body">
+                            <small className={styles.cardProductSeller}>   {val.seller[0].name.toUpperCase()}</small>
+                            <p className={styles.cardProductName} > {val.name}</p>
+                            <span className={styles.cardProductPrice} >{val.price} ₺</span>
+                            <span className={styles.cardAdded} > Sepete Ekle</span>
+
+                            <small className={styles.cardComment}>
+
+                              <i className="fa-solid fa-star"></i>
+                              <i className="fa-solid fa-star"></i>
+                              <i className="fa-solid fa-star"></i>
+                              <i className="fa-solid fa-star"></i>
+                              <i className="fa-solid fa-star"></i>
+
+
+                            </small>
+                          </div>
+                        </div>
 
                       </div>
-                    </div>
 
-                  )
-                })
+                    )
 
-              }
+
+                  })
+                }
+
+
+
+
+              </div>
 
 
             </div>
           </div>
         </div>
-
-
       </div>
+
     </>
   )
 }
 
 export default withUILayout(Home);
+
+
+
+
+
+
+
+
+

@@ -16,7 +16,8 @@ export default function handle(req, res) {
 
         //         _id: uuidv4(),
         //         name: "Elektronik",
-        //         isActive: true
+        //         isActive: true,
+        //         className: "fa-solid fa-plug-circle-check"
 
 
         //     }),
@@ -24,7 +25,8 @@ export default function handle(req, res) {
 
         //         _id: uuidv4(),
         //         name: "Moda",
-        //         isActive: true
+        //         isActive: true,
+        //         className: "fa-solid fa-shirt"
 
 
         //     }),
@@ -34,7 +36,8 @@ export default function handle(req, res) {
 
         //         _id: uuidv4(),
         //         name: "Ev, Yaşam, Kırtasiye, Ofis",
-        //         isActive: true
+        //         isActive: true,
+        //         className: "fa-solid fa-leaf"
 
 
         //     }),
@@ -42,7 +45,8 @@ export default function handle(req, res) {
 
         //         _id: uuidv4(),
         //         name: " Oto, Bahçe, Market",
-        //         isActive: true
+        //         isActive: true,
+        //         className: "fa-solid fa-tractor "
 
 
         //     }),
@@ -50,40 +54,51 @@ export default function handle(req, res) {
 
         //         _id: uuidv4(),
         //         name: "Anne, Bebek, Oyuncak",
-        //         isActive: true
-
+        //         isActive: true,
+        //         className: "fa-solid fa-baby-carriage"
 
         //     }),
         //     new Category({
 
         //         _id: uuidv4(),
         //         name: " Spor, Outdoor",
-        //         isActive: true
-
+        //         isActive: true,
+        //         className: "fa-solid fa-volleyball"
 
         //     }),
         //     new Category({
 
         //         _id: uuidv4(),
         //         name: "Kozmetik, Bakım",
-        //         isActive: true
-
+        //         isActive: true,
+        //         className: "fa-solid fa-wand-magic-sparkles"
 
         //     }),
         //     new Category({
 
         //         _id: uuidv4(),
-        //         name: "Süpermarket, PetShop",
-        //         isActive: true
-
+        //         name: "PetShop",
+        //         isActive: true,
+        //         className: "fa-solid fa-paw"
 
         //     }),
+        //     new Category({
+
+        //         _id: uuidv4(),
+        //         name: "Süpermarket",
+        //         isActive: true,
+        //         className: "fa-solid fa-basket-shopping"
+
+        //     }),
+
+
+
         //     new Category({
 
         //         _id: uuidv4(),
         //         name: "Kitap, Müzik, Film, Hobi",
-        //         isActive: true
-
+        //         isActive: true,
+        //         className: "fa-solid fa-icons"
 
         //     }),
 
