@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import withUILayout from "@/components/withUILayout";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Link from "next/link";
+
 function register() {
   const [inputs, setInputs] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -94,13 +96,28 @@ function register() {
 
   return (
     <>
-      <div className="container row text-center mx-auto mt-5">
-        <div className="mx-auto   col-lg-6 themeDiv  p-5  mt-5">
+      <div className="container row text-center mx-auto mb-5 p-5  ">
+        <div className="mx-auto  registerContainer col-sm-12 col-md-10 col-lg-7  p-5   ">
+          <div className="d-flex flex-column w-25 register-btn-container ">
+            <Link href="/" className="  register-btn-link ">
+              <i class="fa-solid fa-house"></i>
+            </Link>
+            <span className="register-span"> Anasayfa</span>
+            <Link href="/admin/register" className=" register-btn-link ">
+              <i className="fa-regular fa-building"></i>
+            </Link>
+            <span className="register-span">Firma Kayıt</span>
+            <Link href="/login" className=" register-btn-link ">
+              <i className="fa-regular fa-user "></i>
+            </Link>
+            <span className="register-span">Kullanıcı Giriş</span>
+          </div>
+
           <h1 className="text-center ">Kullanıcı Kayıt Sayfası</h1>
           <p className="text-center">Kullanıcı Bilgileri</p>
 
           <form
-            className="row g-3  p-5 "
+            className="row g-2 p-5 m-5  "
             noValidate
             autoComplete="off"
             onSubmit={handleSubmit}
@@ -196,12 +213,16 @@ function register() {
             <div className="form-floating col-sm-12  mb-3">
               <button
                 type="submit"
-                className="btn btn-primary private w-50  "
+                className="btn btn-primary register-btn w-50  "
                 disabled={!isValid}
               >
                 login
               </button>
             </div>
+
+            <Link href="/login" className=" register-link ">
+              Zaten kayıtınız var mı? Giriş sayfasına gidiniz
+            </Link>
           </form>
         </div>
       </div>
@@ -209,4 +230,4 @@ function register() {
   );
 }
 
-export default withUILayout(register);
+export default register;

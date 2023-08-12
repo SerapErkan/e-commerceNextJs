@@ -101,23 +101,34 @@ export default function register() {
 
   return (
     <div className="container row text-center mx-auto mt-5">
-      <div className="mx-auto  col-sm-12 col-md-8 col-lg-8 border p-5  rounded mt-5">
+      <div className="mx-auto registerContainer col-sm-12 col-md-8 col-lg-8  mt-5 p-5   ">
+        <div className="d-flex flex-column w-25 register-btn-container ">
+          <Link href="/" className="  register-btn-link ">
+            <i class="fa-solid fa-house"></i>
+          </Link>
+          <span className="register-span">Anasayfa</span>
+          <Link href="/admin/login" className=" register-btn-link ">
+            <i className="fa-regular fa-building"></i>
+          </Link>
+          <span className="register-span">Firma Giriş</span>
+          <Link href="/register" className=" register-btn-link ">
+            <i className="fa-regular fa-user "></i>
+          </Link>
+          <span className="register-span">Kullanıcı Kayıt</span>
+        </div>
+
         <h1>Firma Kayıt Sayfası</h1>
         <p>Firmanıza ait bilgileri doldurun</p>
 
         <div className="col-sm-12 col-md-8  mb-3 mx-auto ">
           <div className=" d-flex flex-column  ">
             {inputs["imageUrl"] ? (
-              <>
-                <img
-                  src={inputs["imageUrl"] || ""}
-                  className="register-logo "
-                />
-                <button className="btn btn-outline-warning mt-3 w-100 px-2">
-                  Görsel Ekle
-                </button>
-              </>
-            ) : null}
+              <div className="">
+                <img src={inputs["imageUrl"] || ""} className="register-logo" />
+              </div>
+            ) : (
+              <img src="/images/2.png" className="register-img " />
+            )}
           </div>
         </div>
 
@@ -189,7 +200,7 @@ export default function register() {
               ref={(ref) => (elRefs.current["phoneNumber"] = ref)}
             />
 
-            <label htmlFor="phoneNumber">Telefon Numarası</label>
+            <label htmlFor="phoneNumber">Tel No:</label>
             <div className="invalid-feedback">
               Geçerli bir telefon numarası girin
             </div>
@@ -279,7 +290,7 @@ export default function register() {
           <div className="col-sm-4 mx-auto">
             <button
               type="submit"
-              className="btn btn-primary private w-100 py-2 "
+              className="btn btn-primary register-btn w-100 py-2 "
               disabled={!isValid}
               ref={(ref) => (elRefs.current["registerBtn"] = ref)}
             >
@@ -288,8 +299,8 @@ export default function register() {
             </button>
           </div>
           <div className="col-sm-12 ">
-            <Link className="login-link" href="/admin/login">
-              Zaten kayıtınız var mı? Giriş sayfasına git
+            <Link className="register-link" href="/admin/login">
+              Zaten kayıtınız var mı? Giriş sayfasına gidiniz
             </Link>
           </div>
         </form>

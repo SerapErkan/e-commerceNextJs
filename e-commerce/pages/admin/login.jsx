@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function login() {
   const elRefs = useRef({});
@@ -65,13 +66,32 @@ export default function login() {
   }
 
   return (
-    <div className="container row text-center mx-auto mt-5">
-      <div className="mx-auto  col-sm-6 col-md-6 col-lg-6 border p-5  rounded mt-5">
-        <h1 className="text-center">Firma Griş Sayfası</h1>
+    <div className="container row text-center  mx-auto mt-5">
+      <div
+        className="mx-auto  col-sm-12 col-md-8 col-lg-6  p-5  
+      registerContainer mt-5"
+      >
+        <div className="d-flex flex-column w-25 register-btn-container ">
+          <Link href="/" className="  register-btn-link ">
+            <i class="fa-solid fa-house"></i>
+          </Link>
+          <span className="register-span">Anasayfa</span>
+
+          <Link href="/admin/register" className=" register-btn-link ">
+            <i className="fa-regular fa-building"></i>
+          </Link>
+          <span className="register-span">Firma Kayıt</span>
+
+          <Link href="/login" className=" register-btn-link ">
+            <i className="fa-regular fa-user "></i>
+          </Link>
+          <span className="register-span">Kullanıcı Giriş</span>
+        </div>
+        <h1 className="text-center">Firma Giriş Sayfası</h1>
         <p className="text-center">Firmanıza ait bilgileri doldurun</p>
 
         <form
-          className="row g-3 d-flex  justfy-content-center"
+          className="row g-3 d-flex px-5 justify-content-center align-items-center"
           noValidate
           autoComplete="off"
           onSubmit={handleSubmit}
@@ -112,12 +132,15 @@ export default function login() {
           <div className="form-floating col-sm-10  mb-3">
             <button
               type="submit"
-              className="btn btn-primary private w-75"
+              className="btn btn-primary register-btn w-50"
               disabled={!isValid}
             >
               login
             </button>
           </div>
+          <Link className="register-link" href="/admin/register">
+            Firmanız için kayıt oluşturmak istermisiniz?
+          </Link>
         </form>
       </div>
     </div>

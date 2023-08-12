@@ -2,6 +2,7 @@ import withUILayout from "@/components/withUILayout";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
+import styles from "@/styles/ShoppingCart.module.css";
 
 function ShoppingCart() {
   const [shoppingCarts, setShoppingCarts] = useState([]);
@@ -133,12 +134,12 @@ function ShoppingCart() {
     <div className="container mt-5">
       <div className="d-flex  justify-content-center">
         <div className="col-8 me-5">
-          <div className="my-3 p-3 bg-body rounded shadow-lg shoppingCarts">
+          <div className="my-3 p-3  rounded shadow-lg ">
+            <h6 className=" pb-2 mb-0">Sepetim</h6>{" "}
             {shoppingCarts.map((val, index) => {
               return (
                 <div key={index}>
                   {" "}
-                  <h6 className=" pb-2 mb-0">Sepetim</h6>{" "}
                   <div className=" row d-flex align-items-center  p-3  border-top pb-3 ">
                     <div className=" col-sm-12 col-md-3">
                       <img
@@ -187,7 +188,6 @@ function ShoppingCart() {
                 </div>
               );
             })}
-
             {shoppingCarts == "" ? (
               <h5 className="text-center text-secondary  p-5">
                 {" "}
@@ -252,7 +252,7 @@ function ShoppingCart() {
 
             <button className="AdresAddBtn mt-3">Yeni Adres Ekle</button>
           </div> */}
-          <div className="my-2 p-3 bg-body rounded shadow-lg">
+          <div className="my-2 p-3  rounded shadow-lg">
             <p>ödeme bilgileri</p>
             <h1>{total}</h1>
             <button
@@ -269,7 +269,7 @@ function ShoppingCart() {
 
       {/* Ödeme Modal */}
       <div
-        className="modal fade"
+        className="modal fade text-dark"
         id="paymentModal"
         tabIndex={-1}
         aria-labelledby="paymentModalLabel"

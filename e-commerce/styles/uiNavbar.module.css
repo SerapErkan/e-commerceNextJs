@@ -1,0 +1,42 @@
+.shoppingCartCount {
+  display: inline-block;
+  border-radius: 50px;
+  background-color: var(--theme3);
+  color: #fff;
+  padding: 12px 10px;
+  transition: transform 0.5s linear;
+  font-weight: 700;
+}
+.shoppingCartCount:hover {
+  transform: scale(0.8);
+}
+.uıNav {
+  text-decoration: none;
+  color: white !important;
+  position: relative;
+  font-family: var(--font-poppins) !important;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 20px;
+}
+.uıNav:hover {
+  color: var(--theme3) !important;
+}
+
+.uıMenu {
+  background-color: var(--theme) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: 0 4px 8px 0 #36f8ffaf, 0 6px 20px 0 rgba(230, 227, 227, 0.19);
+}
+.uıMenu * {
+  color: #fff !important;
+}
+.uıMenu li * {
+  padding: 10px !important;
+}
+
+.uıMenu li:hover * {
+  background-color: #36f8ff1c;
+}

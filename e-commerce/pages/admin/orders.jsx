@@ -149,95 +149,108 @@ function Orders() {
 
   return (
     <div className="container mt-5">
-      <table className="table ">
-        <thead>
-          <tr>
-            <th className="col-1"></th>
-            <th className="col-1">Ürün resmi</th>
-            <th className="col-1">Sipariş tarihi</th>
-            <th className="col-2">Ürün Detay</th>
-            <th className="col-1">Aded</th>
-            <th className="col-1">Brim Fiyatı</th>
-            <th className="col-1">Ödeme Tutarı</th>
-            <th className="col-1">Durumu</th>
-            <th className="col-2"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((val, index) => {
-            return (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>
-                  <img src={val.products.mainImageUrl} />
-                </td>
-                <td>{val.date}</td>
-
-                <td>{val.products.name}</td>
-                <td>{val.quantity}</td>
-                <td>{val.price}₺</td>
-                <td>{val.price * val.quantity}₺</td>
-                <td>{val.status}</td>
-                <td>{checkStatus(val)}</td>
+      {orders.length > 0 ? (
+        <>
+          {" "}
+          <table className="table ">
+            <thead>
+              <tr>
+                <th className="col-1"></th>
+                <th className="col-1">Ürün resmi</th>
+                <th className="col-1">Sipariş tarihi</th>
+                <th className="col-2">Ürün Detay</th>
+                <th className="col-1">Aded</th>
+                <th className="col-1">Brim Fiyatı</th>
+                <th className="col-1">Ödeme Tutarı</th>
+                <th className="col-1">Durumu</th>
+                <th className="col-2"></th>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {orders.map((val, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>
+                      <img src={val.products.mainImageUrl} />
+                    </td>
+                    <td>{val.date}</td>
 
-      {/* Kargo Modal */}
-      <div
-        className="modal fade"
-        id="cargoModal"
-        tabIndex={-1}
-        aria-labelledby="cargoModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="cargoModalLabel">
-                Siparişi Kargoya Ver
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                id="cargoModalCloseBtn"
-              />
-            </div>
-            <div className="modal-body">
-              <div className="form-group">
-                <label htmlFor="trackingNumber">Kargo Numarası</label>
-                <input
-                  className="form-control"
-                  id="trackingNumber"
-                  name="trackingNumber"
-                  required
-                  autoComplete="off"
-                  minLength={3}
-                  ref={trackingNumberRef}
-                  value={trackingNumber}
-                  onChange={handleChange}
-                />
-                <div className="invalid-feedback">
-                  Kargo takip numarası boş olamaz!
+                    <td>{val.products.name}</td>
+                    <td>{val.quantity}</td>
+                    <td>{val.price}₺</td>
+                    <td>{val.price * val.quantity}₺</td>
+                    <td>{val.status}</td>
+                    <td>{checkStatus(val)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {/* Kargo Modal */}
+          <div
+            className="modal fade"
+            id="cargoModal"
+            tabIndex={-1}
+            aria-labelledby="cargoModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h1 className="modal-title fs-5" id="cargoModalLabel">
+                    Siparişi Kargoya Ver
+                  </h1>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    id="cargoModalCloseBtn"
+                  />
+                </div>
+                <div className="modal-body">
+                  <div className="form-group">
+                    <label htmlFor="trackingNumber">Kargo Numarası</label>
+                    <input
+                      className="form-control"
+                      id="trackingNumber"
+                      name="trackingNumber"
+                      required
+                      autoComplete="off"
+                      minLength={3}
+                      ref={trackingNumberRef}
+                      value={trackingNumber}
+                      onChange={handleChange}
+                    />
+                    <div className="invalid-feedback">
+                      Kargo takip numarası boş olamaz!
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    onClick={giveItToTheCargo}
+                    type="button"
+                    className="btn btn-danger w-100"
+                  >
+                    Siparişi Kargoya Ver
+                  </button>
                 </div>
               </div>
             </div>
-            <div className="modal-footer">
-              <button
-                onClick={giveItToTheCargo}
-                type="button"
-                className="btn btn-danger w-100"
-              >
-                Siparişi Kargoya Ver
-              </button>
-            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <>
+          <div className="shadow-lg  p-5 m-5 rounded-5 ">
+            <h3 className="text-center my-5 text-white ">
+              {" "}
+              Kayıtlı ürün bulunamadı ...
+            </h3>
+          </div>
+        </>
+      )}
     </div>
   );
 }

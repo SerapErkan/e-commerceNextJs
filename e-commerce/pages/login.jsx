@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import withUILayout from "@/components/withUILayout";
+import Link from "next/link";
 
 function login() {
   const elRefs = useRef({});
@@ -67,12 +68,31 @@ function login() {
 
   return (
     <div className="container row text-center mx-auto mt-5">
-      <div className="mx-auto   col-lg-6 themeDiv  p-5  mt-5">
-        <h1 className="text-center ">Kullanıcı Griş Sayfası</h1>
+      <div
+        className="mx-auto  col-sm-12 col-md-8 col-lg-6  p-5  
+      registerContainer mt-5"
+      >
+        <div className="d-flex flex-column w-25 register-btn-container ">
+          <Link href="/" className="  register-btn-link ">
+            <i class="fa-solid fa-house"></i>
+          </Link>
+          <span className="register-span">Anasayfa</span>
+          <Link href="/admin/login" className=" register-btn-link ">
+            <i className="fa-regular fa-building"></i>
+          </Link>
+          <span className="register-span">Firma Giriş</span>
+
+          <Link href="/register" className=" register-btn-link ">
+            <i className="fa-regular fa-user "></i>
+          </Link>
+          <span className="register-span">Kullanıcı Kayıt</span>
+        </div>
+
+        <h2 className="text-center ">Kullanıcı Griş Sayfası</h2>
         <p className="text-center">Kullanıcı Bilgileri</p>
 
         <form
-          className="row g-3 p-5 "
+          className="row g-3 p-5 mx-4 "
           noValidate
           autoComplete="off"
           onSubmit={handleSubmit}
@@ -113,15 +133,19 @@ function login() {
           <div className="form-floating col-sm-12  mb-3">
             <button
               type="submit"
-              className="btn btn-primary private w-50"
+              className="btn btn-primary register-btn w-50"
               disabled={!isValid}
             >
               login
             </button>
           </div>
+          <Link href="/register" className=" register-link ">
+            {" "}
+            Kullanıcı kayıdı oluşturmak istermisiniz?
+          </Link>
         </form>
       </div>
     </div>
   );
 }
-export default withUILayout(login);
+export default login;

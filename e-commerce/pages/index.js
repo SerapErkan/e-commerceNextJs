@@ -1,10 +1,8 @@
 import withUILayout from "@/components/withUILayout"
 import axios from "axios";
 import { Router, useRouter } from "next/router";
-
 import { useEffect, useRef, useState } from "react";
-import Category from "./category";
-
+import UINavbar from "@/components/uiNavbar"
 import styles from "../styles/Home.module.css"
 function Home() {
 
@@ -16,7 +14,7 @@ function Home() {
 
   const elRef = useRef([]);
   const router = useRouter();
-  const elementFilter = document.getElementById("filterId");
+
 
   useEffect(() => {
     getAllCategories();
@@ -26,6 +24,7 @@ function Home() {
 
   useEffect(() => {
     if (filterType == "0" || filterType == "1") {
+      const elementFilter = document.getElementById("filterId");
       elementFilter.className = "d-none"
     }
 
@@ -85,7 +84,7 @@ function Home() {
   }
 
   function filter() {
-
+    const elementFilter = document.getElementById("filterId");
     elementFilter.className = "";
 
   }
@@ -95,7 +94,7 @@ function Home() {
   return (
     <>
 
-
+      <UINavbar />
 
       <div className={styles.divSlider}>
         {/* <!-- ------slider--- --> */}
@@ -282,7 +281,7 @@ function Home() {
   )
 }
 
-export default withUILayout(Home);
+export default Home;
 
 
 
