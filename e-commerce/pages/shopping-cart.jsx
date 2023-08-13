@@ -132,52 +132,54 @@ function ShoppingCart() {
 
   return (
     <div className="container mt-5">
-      <div className="d-flex  justify-content-center">
-        <div className="col-8 me-5">
+      <div className="row row row-cols-1 row-cols-lg-2  d-flex  justify-content-center">
+        <div className="col col-lg-8 p-5 g-2">
           <div className="my-3 p-3  rounded shadow-lg ">
             <h6 className=" pb-2 mb-0">Sepetim</h6>{" "}
             {shoppingCarts.map((val, index) => {
               return (
                 <div key={index}>
-                  {" "}
-                  <div className=" row d-flex align-items-center  p-3  border-top pb-3 ">
-                    <div className=" col-sm-12 col-md-3">
+                  <div className=" row row-cols-1 row-cols-md-4   d-flex align-items-center  justify-content-center p-3  border-top  ">
+                    <div className="col col-md-3 ">
                       <img
                         src={val.products[0]?.mainImageUrl}
                         className="shoppingCartsImg me-5"
                       />
                     </div>
-                    <div className=" col-sm-12 col-md-3">
-                      {" "}
-                      <p>{val.products[0]?.name} -@satıcı</p>
+
+                    <div className=" col col-md-4">
+                      <div className={styles.priceDetail}>
+                        <h5>
+                          {" "}
+                          Fiyat: <span>{val.products[0]?.price} ₺</span>{" "}
+                        </h5>
+                        <h5>
+                          Toplam:{" "}
+                          <span>{val.quantity * val.products[0]?.price}₺</span>
+                        </h5>
+                      </div>
                     </div>
-                    <div className=" col-sm-12 col-md-2">
+                    <div className=" col col-md-4">
                       <button
-                        className="quantityBtnPlus "
+                        className={styles.quantityBtnPlus}
                         onClick={() => quantityPlus(val)}
                       >
                         +
                       </button>
-                      <span className="quantitySpan p-2">{val.quantity}</span>
+                      <span className={styles.quantitySpan}>
+                        {val.quantity}
+                      </span>
                       <button
-                        className="quantityBtnMinus "
+                        className={styles.quantityBtnMinus}
                         onClick={() => quantityMinus(val)}
                       >
                         -
                       </button>
                     </div>
-                    <div className=" col-sm-12 col-md-3">
-                      <p className="priceDetail">
-                        <span className="priceDetailSpan ">
-                          Fiyat:{val.products[0]?.price} ₺ Toplam :
-                          {val.quantity * val.products[0]?.price}₺
-                        </span>
-                      </p>
-                    </div>
-                    <div className=" col-sm-12 col-md-1">
+                    <div className=" col col-md-1">
                       {" "}
                       <button
-                        className="btn theme"
+                        className={`${styles.productDeletedBtn} mx-auto`}
                         type="button"
                         onClick={() => removeById(val)}
                       >
@@ -185,6 +187,8 @@ function ShoppingCart() {
                       </button>
                     </div>
                   </div>
+                  <p className={styles.nameProduct}>{val.products[0]?.name} </p>
+                  <p>-@satıcı</p>
                 </div>
               );
             })}
@@ -199,41 +203,13 @@ function ShoppingCart() {
             )}
           </div>
         </div>
-        <div className="col-4">
-          {/* <div className="my-2 p-3 bg-body rounded shadow-lg">
-            <div className="list-group">
-              <label className="list-group-item d-flex gap-2">
-                <input
-                  className="form-check-input flex-shrink-0"
-                  type="radio"
-                  name="listGroupRadios"
-                  id="listGroupRadios1"
-                  value=""
-                  checked=""
-                />
-                <span>
-                  First radio
-                  <small className="d-block text-body-secondary">
-                    With support text underneath to add more detail
-                  </small>
-                </span>
-              </label>
-              <label className="list-group-item d-flex gap-2">
-                <input
-                  className="form-check-input flex-shrink-0"
-                  type="radio"
-                  name="listGroupRadios"
-                  id="listGroupRadios2"
-                  value=""
-                />
-                <span>
-                  Second radio
-                  <small className="d-block text-body-secondary">
-                    Some other text goes here
-                  </small>
-                </span>
-              </label>
-              <label className="list-group-item d-flex gap-2">
+        <div className="col col-lg-4">
+          <div className="my-3 p-3  rounded shadow-lg">
+            <div className="list-group ">
+              <h6>Adres seç</h6>
+              <label
+                className={`${styles.labelBg} list-group-item d-flex mb-2  gap-2`}
+              >
                 <input
                   className="form-check-input flex-shrink-0"
                   type="radio"
@@ -242,19 +218,25 @@ function ShoppingCart() {
                   value=""
                 />
                 <span>
-                  Third radio
-                  <small className="d-block text-body-secondary">
-                    And we end with another snippet of text
+                  Ev Adresi
+                  <small className="d-block ">
+                    kkk mah. menekşe sok. tekirdag/kapaklı
                   </small>
                 </span>
               </label>
-            </div>
 
-            <button className="AdresAddBtn mt-3">Yeni Adres Ekle</button>
-          </div> */}
-          <div className="my-2 p-3  rounded shadow-lg">
+              <span className={`${styles.addresBtn} d-block mx-auto w-100 `}>
+                <i class="fa-regular fa-address-book fa-md me-2"> </i>
+                <span>Yeni Adres Ekle</span>
+              </span>
+            </div>
+          </div>
+          <div className="my-3 p-3  rounded shadow-lg">
             <p>ödeme bilgileri</p>
-            <h1>{total}</h1>
+            <h6>
+              Toplam tutar:
+              <span className="text-info ms-2 fs-5">{total} ₺</span>{" "}
+            </h6>
             <button
               data-bs-toggle="modal"
               data-bs-target="#paymentModal"
