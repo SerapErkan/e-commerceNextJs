@@ -58,8 +58,11 @@ function uiNavbar() {
             <header >
                 <div className="container ">
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                            <img src='/images/logo2.png' />
+                        <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none  ">
+                            <div className={styles.imgLogoDiv}>
+                                <img src='/images/logo2.png' />
+                            </div>
+
                         </a>
 
                         <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 uıNav">

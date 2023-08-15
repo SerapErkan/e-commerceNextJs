@@ -44,3 +44,9 @@
 
   color: #fff !important;
 }
+
+.imgLogoDiv {
+  height: 150px !important;
+  width: 300px !important;
+  object-fit: contain;
+}

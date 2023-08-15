@@ -1,12 +1,15 @@
 .divSlider {
+  margin-bottom: 100px;
   width: 100%;
-  height: 200px !important;
-  background-color: var(--theme);
-  margin-bottom: 550px;
+  height: 350px;
+
+  padding: 20px;
 }
+
 .divSlider img {
-  width: 600px;
-  height: 560px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .cardProduct {
@@ -23,7 +26,7 @@
   box-shadow: 0 4px 8px 0 rgba(20, 20, 20, 0.2),
     0 6px 20px 0 rgba(17, 17, 17, 0.19);
   padding-top: 220px;
-  opacity: 0.5;
+  opacity: 0.9;
   transition: var(--transition);
 }
 
@@ -138,10 +141,13 @@
 .categoryDiv {
   position: absolute;
   top: 40px;
-  left: 40px;
+  left: 0;
   padding: 20px;
   z-index: 200;
   width: 200px;
+
+  overflow: hidden;
+  transition: var(--transition);
 }
 .categoryDiv:hover .categoriesList {
   width: inherit;

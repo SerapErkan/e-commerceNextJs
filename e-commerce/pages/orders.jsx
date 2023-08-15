@@ -1,9 +1,9 @@
 import withUILayout from "@/components/withUILayout";
 import axios from "axios";
-
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
+import styles from "../styles/Order.module.css";
 function Orders() {
   const router = useRouter();
   const [orders, setOrders] = useState([]);
@@ -28,30 +28,68 @@ function Orders() {
   }
 
   function MessageStatus(msg) {
-    return (
-      <>
-        <span className="spanDanger"> {msg}</span>
-      </>
-    );
+    if (msg == "Teslim Alındı" || msg == "Sipariş Onaylandı") {
+      return (
+        <>
+          <span className="spanSuccess"> {msg}</span>
+        </>
+      );
+    } else if (msg == "Sipariş Reddedildi") {
+      return (
+        <>
+          <span className="spanDanger"> {msg}</span>
+        </>
+      );
+    } else if (msg == "Onay Bekliyor") {
+      return (
+        <>
+          <span className="spanWarning"> {msg}</span>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <span className="spanPrimary"> {msg}</span>
+        </>
+      );
+    }
   }
 
   return (
     <div className="container">
       {orders.map((val, index) => {
         return (
-          <div className="row row-cols-1 row-cols-md-4   d-flex align-items-center  justify-content-center p-3  ">
+          <div
+            className={`${styles.shadow_lg} row row-cols-1   row-cols-sm-2  row-cols-md-4  my-5 d-flex align-items-center  justify-content-center px-5 py-4 `}
+          >
             {" "}
-            <div className="col col-md-3 ">{val.products[0].name}</div>
-            <div className="col col-md-3 ">{val.price * val.quantity}₺</div>
-            <div className="col col-md-3 ">{MessageStatus(val.status)}</div>
+            <div className={`${styles.imgDiv} col  col-md-2 `}>
+              {" "}
+              <img className=" p-2 " src={val.products[0].mainImageUrl} />
+            </div>
+            <div className={`${styles.productName} col col-md-5`}>
+              {" "}
+              {val.products[0].name}
+            </div>
             <div className="col col-md-3 ">
+              <h6>Toplam tutar</h6>
+              <span className={styles.priceSpan}>
+                {val.price * val.quantity} ₺
+              </span>
+            </div>
+            <div className="col col-md-2 ">
               {" "}
               <button
-                className="btn btn-warning"
+                className={styles.detailBtn}
                 onClick={() => goToDetail(val._id)}
               >
-                Sipariş Detayı{" "}
+                <i class="fa-solid fa-angles-right fa-xl m-2"></i>
+                Detay{" "}
               </button>
+              <h6 className={styles.statusSpan}>
+                {" "}
+                {MessageStatus(val.status)}
+              </h6>
             </div>
           </div>
         );

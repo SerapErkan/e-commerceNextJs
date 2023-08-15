@@ -2,7 +2,7 @@
   --font-poppins: "Poppins", sans-serif;
   --theme: #353941;
   --transition: all 0.3s ease-in;
-  --theme2: #3ed452;
+  --theme2: #5e9add;
   --theme3: #4b73dffb;
   --text-color-grey: #7c7b7b;
 
@@ -107,14 +107,14 @@ select {
 @keyframes barAnimate {
   0% {
     transform: scaleY(0.1);
-    background-color: var(--theme);
+    background-color: var(--theme3);
   }
   50% {
     background-color: var(--theme2);
     transform: scaleY(1.2);
   }
   100% {
-    background-color: var(--theme);
+    background-color: var(--theme3);
     transform: scaleY(0.1);
   }
 }
@@ -313,7 +313,7 @@ h6.price span {
 } */
 /*--end--*/
 
-/* //span */
+/* //span order */
 .spanSuccess {
   background-color: rgba(var(--success), 0.1);
   color: rgb(var(--success));
@@ -336,7 +336,7 @@ h6.price span {
 }
 .spanWarning {
   background-color: rgba(var(--warning), 0.1);
-  color: rgb(var(--danger));
+  color: rgb(var(--warning));
   border-radius: 5px;
   padding: 5px 7px !important;
 }
@@ -411,6 +411,20 @@ h6.price span {
 }
 .step-3 {
   background-color: yellowgreen;
+}
+
+.shadow_lg {
+  box-shadow: 0 5px 15px 0 var(--theme3), 0 2px 0px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+}
+.shadow_lg:hover {
+  background-color: #13121231;
+}
+
+.orderSellerImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
 
 /* order-Detail end */

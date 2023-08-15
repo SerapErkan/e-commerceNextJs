@@ -107,12 +107,12 @@ function Home() {
                 aria-current="true"></button>
             </div>
             <div class="carousel-inner ">
-              <div class="carousel-item text-center">
+              <div class="carousel-item text-end">
 
                 <div class="container ">
                   <img src="/images/1.png" class=" bd-placeholder-img " aria-hidden=" true"
                     preserveAspectRatio="xMidYMid slice" focusable="false" />
-                  <div class="carousel-caption text-start  ps-5 ms-5 ">
+                  <div class="carousel-caption text-start  ps-5 ms-3 ">
                     <h1>Canlı Destek.</h1>
                     <p class="opacity-75">Tüm konu başlıklarında chat yöntemiyle canlı destek alabilirsiniz. </p>
                     <p><a class="btn btn-lg btn-outline-warning p-3" href="#">Çok Yakında :)</a></p>
@@ -123,17 +123,14 @@ function Home() {
 
               <div class="carousel-item">
 
-                <div class="container mb-5">
-                  <img src="/images/Home.png" class="imgSlider bd-placeholder-img" aria-hidden="true"
+                <div class="container ">
+                  <img src="/images/3.png" class="imgSlider bd-placeholder-img" aria-hidden="true"
                     preserveAspectRatio="xMidYMid slice" focusable="false" />
 
-                  <div class="carousel-caption">
-                    <span class="badge bg-primary-subtle border border-primary-subtle text-primary-emphasis rounded-pill p-5 me-2">Sepete En Çok Eklenen</span>
-                    <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill p-5 me-2">En Çok Öne Çıkanlar</span>
-                    <span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill p-5 me-2">İndirimli Flaş Ürünler</span>
+                  <div class="carousel-caption text-end ps-5 ms-5">
 
-                    <p class="mb-5 mt-3"> Giyim, bilgisayar, cep telefonu, kozmetik, beyaz eşya, süpermarket & daha aradığın yüz binlerce indirimli ürün en uygun fiyatlar ve kampanyalarla ...</p>
-                    <p><a class="btn btn-lg btn-outline-warning p-3" href="#">Üye Grişi</a></p>
+                    <p class=""> Giyim, bilgisayar, cep telefonu, kozmetik, beyaz eşya, süpermarket & daha aradığın yüz binlerce indirimli ürün en uygun fiyatlar ve kampanyalarla ...</p>
+                    <p><a class="btn btn-lg btn-outline-warning p-2" href="#">Üye Grişi</a></p>
                   </div>
                 </div>
               </div>
