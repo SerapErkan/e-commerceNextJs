@@ -9,6 +9,8 @@ export default function handle(req, res) {
     request(res, async () => {
         dbConnect();
         const { userId } = req.body;
+        const { addressId } = req.body;
+
         const shoppingCarts = await ShoppingCart.aggregate([
             {
                 $lookup: {
@@ -41,7 +43,8 @@ export default function handle(req, res) {
                     isPaymentCompleted: true,
                     status: "Onay Bekliyor",
                     isReject: false,
-                    trackingNumber: ""
+                    trackingNumber: "",
+                    addressId: addressId
                 });
 
                 await order.save(); // siparişi onaylayalım 

@@ -28,7 +28,8 @@
 }
 
 .cardProduct:hover {
-  box-shadow: 0 4px 8px 2px rgba(235, 223, 223, 0.842), 0 6px 20px 0 #36f8ffec;
+  box-shadow: 0 4px 8px 2px rgba(235, 223, 223, 0.842),
+    0 6px 20px 0 var(--theme3);
   opacity: 1;
   color: var(--theme);
   background-color: #fff;
@@ -99,7 +100,7 @@
 .cardAdded {
   text-align: center !important;
   display: block;
-  background-color: rgba(54, 248, 255, 0.247);
+  background-color: var(--theme3);
   margin: 5px 30px;
   border-radius: 10px;
   padding: 10px;

@@ -4,6 +4,7 @@ const orderSchema = new mongoose.Schema({
     _id: String,
     userId: String,
     productId: String,
+    addressId: String,
     quantity: Number,        //ürün adedi
     price: Number,          //alınma ücreti
     date: Date,             //sipariş ve ödeme tarihi

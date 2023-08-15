@@ -7,24 +7,33 @@ import { toast } from 'react-toastify';
 function OrderDetail() {
 
     const [order, setOrder] = useState({});
-    const router = useRouter();
-    const commentRef = useRef();
     const [comment, setComment] = useState("");
     const [star, setStar] = useState("5");
     const [orderId, setOrderId] = useState("");
+    const [address, setAddress] = useState({});
+    const router = useRouter();
+    const commentRef = useRef();
 
     useEffect(() => {
         if (router.isReady) {
             getElementById(router.query.id);
             setOrderId(router.query.id);
+
+
         }
 
     }, [router.isReady]);
 
+
+
+
+
+
     async function getElementById(id) {
         const result = await axios.post("/api/ui/orders/getById", { orderId: id });
         setOrder(result.data);
-        console.log(result.data)
+        console.log(result.data);
+
 
     }
 
@@ -90,7 +99,9 @@ function OrderDetail() {
                         </button> :
                             <button data-bs-toggle="modal" data-bs-target="#commentModal" onClick={() => openCommentModal(order[0]._id)} className='btn btn-warning mt-1'> Yorum Güncelle
                             </button>
+
                     }
+
 
                 </div>
             )
@@ -100,7 +111,7 @@ function OrderDetail() {
         else if (status == "Onay Bekliyor") {
             return (
                 <div className="col-sm-12 col-md-2 col-lg-2">
-                    <button onClick={() => checkOut(order[0]._id)} className='btn btn-outline-info mt-1'>Canlı Destek Al
+                    <button className='btn btn-outline-info mt-1'>Canlı Destek Al
                     </button> </div>
             )
 
@@ -108,7 +119,7 @@ function OrderDetail() {
         else if (status == "Sipariş Kargoya Verildi") {
             return (
                 <div className="col-sm-12 col-md-2 col-lg-2">
-                    <button onClick={() => checkOut(order[0]._id)} className='btn btn-outline-success mt-1 '> Kango takip
+                    <button className='btn btn-outline-success mt-1 '> Kango takip
                     </button> </div>
             )
 
@@ -129,7 +140,14 @@ function OrderDetail() {
 
 
 
+    async function getAddress(id) {
 
+        console.log(id);
+        const result = await axios.post("/api/ui/address/getById", { id: id });
+        setAddress(result.data);
+
+
+    }
 
 
 
@@ -175,6 +193,7 @@ function OrderDetail() {
                         <div className='col-sm-12 col-md-8 col-lg-8 shadow-lg text-center mt-5 p-3 me-3  rounded-5'>
                             <h3>Sipariş Bilgileri</h3>
                             <h6>{order[0].date}</h6>
+                            <button onClick={() => getAddress(order[0].addressId)}>adress bilgisi</button>
 
 
 
@@ -207,11 +226,18 @@ function OrderDetail() {
                         <div className='col-sm-12 col-md-11 col-lg-11 shadow-lg text-center mt-5 p-5  rounded-5'>
                             <h3>Alıcı bilgileri Bilgileri</h3>
 
+
                             <div className="row align-items-center text-start">
-                                <div className="col-sm-12 col-md-6 col-lg-6">   <h6> Adı:  {order[0].user.name}</h6>  <h6> Adres:  aa mah .gllgkl sok .. kjfjdkjshjkhjhjhkghfrtyuhbgfvh  hfyfgnb gjhgf kjfjdkjshjkhjhjhkghfrtyuhbgfvh  hfyfgnb gjhgf</h6>  </div>
-                                <div className="col-sm-12 col-md-6 col-lg-6 ">
+                                <div className="col-sm-12 col-md-6 col-lg-6">   <h6>
+                                    Adı:  {order[0].user.name}</h6>
                                     <h6>Telefon Numarası: {order[0].user.phoneNumber}</h6>
                                     <h6>Mail: {order[0].user.email}</h6>
+                                </div>
+                                <div className="col-sm-12 col-md-6 col-lg-6 ">
+                                    <h6>Teslimat Adresi</h6>
+                                    <p>{address.city} /{address.towns}/{address.district}</p>
+                                    {address.neighbourhood}.{address.street}.{address.description}
+
                                 </div>
 
                             </div>
@@ -224,6 +250,7 @@ function OrderDetail() {
 
 
                         </div>
+
                     </div>
 
 

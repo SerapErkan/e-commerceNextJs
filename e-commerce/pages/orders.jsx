@@ -36,56 +36,61 @@ function Orders() {
   }
 
   return (
-    <div className="container mt-5">
-      <table className="table text-center">
-        <thead>
-          <tr>
-            <th className="col-1 "></th>
-            <th className="col-1 ">Ürün resmi</th>
-            <th className="col-1 ">Sipariş tarihi</th>
-
-            <th className="col-3 ">Ürün Detay</th>
-            <th className="col-1 ">Firma Sahibi</th>
-            {/* <th scope="col">Aded</th>
-            <th scope="col">Brim Fiyatı</th> */}
-            <th className="col-1 ">Ödeme Tutarı</th>
-
-            <th className="col-2 ">Durumu</th>
-            <th className="col-2"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((val, index) => {
-            return (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>
-                  <img src={val.products[0].mainImageUrl} />
-                </td>
-
-                <td>{val.date}</td>
-
-                <td>{val.products[0].name}</td>
-                <td>{val.products[0].seller[0].name}</td>
-                {/* <td>{val.quantity}</td>
-                <td>{val.price}₺</td> */}
-                <td>{val.price * val.quantity}₺</td>
-                <td>{MessageStatus(val.status)}</td>
-                <td>
-                  {" "}
-                  <button
-                    className="btn btn-warning"
-                    onClick={() => goToDetail(val._id)}
-                  >
-                    Sipariş Detayı{" "}
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className="container">
+      {orders.map((val, index) => {
+        return (
+          <div className="row row-cols-1 row-cols-md-4   d-flex align-items-center  justify-content-center p-3  ">
+            {" "}
+            <div className="col col-md-3 ">{val.products[0].name}</div>
+            <div className="col col-md-3 ">{val.price * val.quantity}₺</div>
+            <div className="col col-md-3 ">{MessageStatus(val.status)}</div>
+            <div className="col col-md-3 ">
+              {" "}
+              <button
+                className="btn btn-warning"
+                onClick={() => goToDetail(val._id)}
+              >
+                Sipariş Detayı{" "}
+              </button>
+            </div>
+          </div>
+        );
+      })}
     </div>
+
+    // <div className="container mt-5">
+    //   <table className="table table-dark table-hover text-center ">
+    //     <thead></thead>
+    //     <tbody>
+    //       {orders.map((val, index) => {
+    //         return (
+    //           <tr key={index}>
+    //             <td>{index + 1}</td>
+    //             <td>
+    //               <img src={val.products[0].mainImageUrl} />
+    //             </td>
+
+    //             <td>{val.date}</td>
+
+    //             <td>{val.products[0].name}</td>
+
+    //             <td>{val.price * val.quantity}₺</td>
+    //             <td>{MessageStatus(val.status)}</td>
+    //             <td>
+    //               {" "}
+    //               <button
+    //                 className="btn btn-warning"
+    //                 onClick={() => goToDetail(val._id)}
+    //               >
+    //                 Sipariş Detayı{" "}
+    //               </button>
+    //             </td>
+    //           </tr>
+    //         );
+    //       })}
+    //     </tbody>
+    //   </table>
+    // </div>
   );
 }
 

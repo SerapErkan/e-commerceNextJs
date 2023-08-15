@@ -2,8 +2,8 @@
   --font-poppins: "Poppins", sans-serif;
   --theme: #353941;
   --transition: all 0.3s ease-in;
-  --theme2: #ffc814;
-  --theme3: #36f8ffaf;
+  --theme2: #3ed452;
+  --theme3: #4b73dffb;
   --text-color-grey: #7c7b7b;
 
   --primary: 12, 131, 255;
@@ -53,6 +53,11 @@ img {
 td {
   /* tabloların içindeki değerlei ortala */
   vertical-align: middle !important;
+}
+
+select {
+  -webkit-appearance: menulist-button !important;
+  appearance: menulist-button !important;
 }
 
 /* // loadingBar */
@@ -117,7 +122,7 @@ td {
 
 /*themeDiv- login-register*/
 
-.themeDiv {
+/* .themeDiv {
   border-radius: 20px;
   box-shadow: 0 4px 4px 0 var(--theme2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
 }
@@ -135,13 +140,13 @@ td {
   transform: scale(1.2);
   background-color: var(--theme2) !important;
   border-color: var(--theme2) !important;
-}
+} */
 
 /* /theme end */
 
 /*register admin*/
 .registerContainer {
-  box-shadow: 0 4px 8px 0 #36f8ffaf, 0 6px 20px 0 rgba(230, 227, 227, 0.19);
+  box-shadow: 0 4px 8px 0 var(--theme3), 0 6px 20px 0 rgba(230, 227, 227, 0.19);
   border-radius: 30px;
   color: #fff;
   background-color: #282a30;
@@ -200,7 +205,7 @@ td {
 }
 .register-btn-link:hover {
   background-color: #0e090957;
-  box-shadow: 0 4px 10px 0 #36f8ffaf, 0 4px 20px 0 rgba(230, 227, 227, 0.19);
+  box-shadow: 0 4px 10px 0 var(--theme3), 0 4px 20px 0 rgba(230, 227, 227, 0.19);
 }
 .register-btn-link:hover i {
   color: var(--theme3);

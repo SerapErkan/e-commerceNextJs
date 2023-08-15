@@ -24,11 +24,13 @@
 }
 
 .uıMenu {
-  background-color: var(--theme) !important;
+  background-color: #3d3c3c42 !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
-  box-shadow: 0 4px 8px 0 #36f8ffaf, 0 6px 20px 0 rgba(230, 227, 227, 0.19);
+  box-shadow: 0 4px 8px 0 var(--theme3), 0 6px 20px 0 rgba(230, 227, 227, 0.19);
+  backdrop-filter: blur(50px);
+  margin-top: 10px !important;
 }
 .uıMenu * {
   color: #fff !important;
@@ -38,5 +40,7 @@
 }
 
 .uıMenu li:hover * {
-  background-color: #36f8ff1c;
+  background-color: #1d1a1a21;
+
+  color: #fff !important;
 }

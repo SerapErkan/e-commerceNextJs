@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import styles from "@/styles/ShoppingCart.module.css";
+import Link from "next/link";
 
 function ShoppingCart() {
   const [shoppingCarts, setShoppingCarts] = useState([]);
@@ -12,12 +13,15 @@ function ShoppingCart() {
   const [inputs, setInputs] = useState({});
   const elRefs = useRef([]);
   const [isValid, setIsValid] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState([]);
+  const [address, setAddress] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
       setUser(JSON.parse(localStorage.getItem("user")));
       const user = JSON.parse(localStorage.getItem("user"));
       getAll(user);
+      getAddress();
     }
   }, []);
 
@@ -116,6 +120,7 @@ function ShoppingCart() {
     if (isValid) {
       const result = await axios.post("/api/ui/orders/add", {
         userId: user._id,
+        addressId: selectedAddress,
       });
       toast("Siparişiniz alındı ...");
       getAll(user);
@@ -130,124 +135,147 @@ function ShoppingCart() {
     }
   }
 
-  return (
-    <div className="container mt-5">
-      <div className="row row row-cols-1 row-cols-lg-2  d-flex  justify-content-center">
-        <div className="col col-lg-8 p-5 g-2">
-          <div className="my-3 p-3  rounded shadow-lg ">
-            <h6 className=" pb-2 mb-0">Sepetim</h6>{" "}
-            {shoppingCarts.map((val, index) => {
-              return (
-                <div key={index}>
-                  <div className=" row row-cols-1 row-cols-md-4   d-flex align-items-center  justify-content-center p-3  border-top  ">
-                    <div className="col col-md-3 ">
-                      <img
-                        src={val.products[0]?.mainImageUrl}
-                        className="shoppingCartsImg me-5"
-                      />
-                    </div>
+  async function getAddress() {
+    const result = await axios.get("/api/ui/address/getAll", { id: user._id });
+    setAddress(result.data);
+    console.log(result.data);
+  }
 
-                    <div className=" col col-md-4">
-                      <div className={styles.priceDetail}>
-                        <h5>
+  return (
+    <div className="container mt-1">
+      {shoppingCarts == "" ? (
+        <div className={styles.shadowCard}>
+          <h5 className="text-center text-secondary  p-5">
+            {" "}
+            <i className="fa-regular fa-face-grin-wide fa-2xl me-2"></i>
+            Sepete Ürün Ekle{" "}
+          </h5>
+        </div>
+      ) : (
+        <div className="row row row-cols-1 row-cols-lg-2  d-flex  justify-content-center">
+          <div className="col col-lg-8 p-4 g-2">
+            <div className=" rounded  ">
+              {shoppingCarts.map((val, index) => {
+                return (
+                  <div key={index}>
+                    <div className={`${styles.shadowCard}  my-4 p-3`}>
+                      <div className=" row row-cols-1 row-cols-md-4   d-flex align-items-center  justify-content-center p-3  ">
+                        <div className="col col-md-3 ">
+                          <img
+                            src={val.products[0]?.mainImageUrl}
+                            className="shoppingCartsImg me-5"
+                          />
+                        </div>
+
+                        <div className=" col col-md-4">
+                          <div className={styles.priceDetail}>
+                            <h5>
+                              {" "}
+                              Fiyat: <span>
+                                {val.products[0]?.price} ₺
+                              </span>{" "}
+                            </h5>
+                            <h5>
+                              Toplam:{" "}
+                              <span>
+                                {val.quantity * val.products[0]?.price}₺
+                              </span>
+                            </h5>
+                          </div>
+                        </div>
+                        <div className=" col col-md-4">
+                          <button
+                            className={styles.quantityBtnPlus}
+                            onClick={() => quantityPlus(val)}
+                          >
+                            +
+                          </button>
+                          <span className={styles.quantitySpan}>
+                            {val.quantity}
+                          </span>
+                          <button
+                            className={styles.quantityBtnMinus}
+                            onClick={() => quantityMinus(val)}
+                          >
+                            -
+                          </button>
+                        </div>
+                        <div className=" col col-md-1">
                           {" "}
-                          Fiyat: <span>{val.products[0]?.price} ₺</span>{" "}
-                        </h5>
-                        <h5>
-                          Toplam:{" "}
-                          <span>{val.quantity * val.products[0]?.price}₺</span>
-                        </h5>
+                          <button
+                            className={`${styles.productDeletedBtn} mx-auto`}
+                            type="button"
+                            onClick={() => removeById(val)}
+                          >
+                            <i className="fa-solid fa-x"></i>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                    <div className=" col col-md-4">
-                      <button
-                        className={styles.quantityBtnPlus}
-                        onClick={() => quantityPlus(val)}
-                      >
-                        +
-                      </button>
-                      <span className={styles.quantitySpan}>
-                        {val.quantity}
-                      </span>
-                      <button
-                        className={styles.quantityBtnMinus}
-                        onClick={() => quantityMinus(val)}
-                      >
-                        -
-                      </button>
-                    </div>
-                    <div className=" col col-md-1">
-                      {" "}
-                      <button
-                        className={`${styles.productDeletedBtn} mx-auto`}
-                        type="button"
-                        onClick={() => removeById(val)}
-                      >
-                        <i className="fa-solid fa-x"></i>
-                      </button>
+                      <p className={styles.nameProduct}>
+                        {val.products[0]?.name}{" "}
+                      </p>
+                      <p>@satıcı</p>
                     </div>
                   </div>
-                  <p className={styles.nameProduct}>{val.products[0]?.name} </p>
-                  <p>-@satıcı</p>
-                </div>
-              );
-            })}
-            {shoppingCarts == "" ? (
-              <h5 className="text-center text-secondary  p-5">
-                {" "}
-                <i className="fa-regular fa-face-grin-wide fa-2xl me-2"></i>
-                Sepete Ürün Ekle{" "}
-              </h5>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-        <div className="col col-lg-4">
-          <div className="my-3 p-3  rounded shadow-lg">
-            <div className="list-group ">
-              <h6>Adres seç</h6>
-              <label
-                className={`${styles.labelBg} list-group-item d-flex mb-2  gap-2`}
-              >
-                <input
-                  className="form-check-input flex-shrink-0"
-                  type="radio"
-                  name="listGroupRadios"
-                  id="listGroupRadios3"
-                  value=""
-                />
-                <span>
-                  Ev Adresi
-                  <small className="d-block ">
-                    kkk mah. menekşe sok. tekirdag/kapaklı
-                  </small>
-                </span>
-              </label>
-
-              <span className={`${styles.addresBtn} d-block mx-auto w-100 `}>
-                <i class="fa-regular fa-address-book fa-md me-2"> </i>
-                <span>Yeni Adres Ekle</span>
-              </span>
+                );
+              })}
             </div>
           </div>
-          <div className="my-3 p-3  rounded shadow-lg">
-            <p>ödeme bilgileri</p>
-            <h6>
-              Toplam tutar:
-              <span className="text-info ms-2 fs-5">{total} ₺</span>{" "}
-            </h6>
-            <button
-              data-bs-toggle="modal"
-              data-bs-target="#paymentModal"
-              className="btn btn-danger w-100"
-            >
-              <i className="fa-solid fa-credit-card"></i>
-              <span className="ms-2">Ödeme Yap</span>
-            </button>
+          <div className="col col-lg-4 p-5">
+            <div className={`${styles.shadowCard}  my-3 p-3  rounded`}>
+              <div className="list-group ">
+                <h6>Adres seç</h6>
+                {address.map((val, index) => {
+                  return (
+                    <label
+                      key={index}
+                      className={`${styles.labelBg} list-group-item d-flex mb-2  gap-2`}
+                    >
+                      <input
+                        className="form-check-input flex-shrink-0"
+                        type="radio"
+                        name="listGroupRadios"
+                        id="listGroupRadios3"
+                        value={selectedAddress}
+                        onChange={() => setSelectedAddress(val._id)}
+                      />
+                      <span>
+                        <small className=" ">
+                          {val.city}-{val.towns}-{val.district}-
+                          {val.neighbourhood}- {val.description}-{val.street}
+                        </small>
+                      </span>
+                    </label>
+                  );
+                })}
+
+                <Link
+                  className={`${styles.addresBtn} d-block mx-auto w-100 `}
+                  href="/addressAdd"
+                >
+                  <i className="fa-regular fa-address-book fa-md me-2"> </i>
+                  <span>Yeni Adres Ekle</span>
+                </Link>
+              </div>
+            </div>
+            <div className={`${styles.shadowCard}  my-3 p-3  rounded`}>
+              <p>ödeme bilgileri</p>
+              <h6>
+                Toplam tutar:
+                <span className="text-info ms-2 fs-5">{total} ₺</span>{" "}
+              </h6>
+              <button
+                data-bs-toggle="modal"
+                data-bs-target="#paymentModal"
+                className="btn btn-danger w-100"
+              >
+                <i className="fa-solid fa-credit-card"></i>
+                <span className="ms-2">Ödeme Yap</span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Ödeme Modal */}
       <div
