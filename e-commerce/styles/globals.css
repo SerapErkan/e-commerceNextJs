@@ -2,8 +2,8 @@
   --font-poppins: "Poppins", sans-serif;
   --theme: #353941;
   --transition: all 0.3s ease-in;
-  --theme2: #5e9add;
-  --theme3: #4b73dffb;
+  --theme2: #a67bc4;
+  --theme3: #986ff7fb;
   --text-color-grey: #7c7b7b;
 
   --primary: 12, 131, 255;
@@ -22,9 +22,14 @@
 
 .custom-toast > div {
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19) !important;
-  color: var(--theme) !important;
+  color: #fff !important;
   font-weight: 700;
   font-size: 1rem;
+  background-color: var(--theme3);
+}
+
+.Toastify__progress-bar-theme--dark {
+  background-color: #fff !important;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

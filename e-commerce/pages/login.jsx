@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import withUILayout from "@/components/withUILayout";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 function login() {
   const elRefs = useRef({});
@@ -53,7 +54,6 @@ function login() {
     await axios
       .post("/api/ui/auth/login", inputs)
       .then((res) => {
-        console.log("data ", res.data);
         localStorage.setItem(
           "accessToken",
           JSON.stringify(res.data.accessToken)
@@ -62,7 +62,7 @@ function login() {
         router.push("/");
       })
       .catch((err) => {
-        console.log(err.response?.data?.message);
+        toast(err.response?.data?.message);
       });
   }
 

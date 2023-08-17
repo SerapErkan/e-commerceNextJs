@@ -77,7 +77,7 @@ function uiNavbar() {
                         {user ? (
                             <div className="text-end d-flex align-items-center justify-content-center text-white uıNav ">
 
-                                <Link href="/" className={styles.uıNav}><i className="fa-solid fa-heart me-2  fa-lg "></i>Favorilerim
+                                <Link href="/favorites" className={styles.uıNav}><i className="fa-solid fa-heart me-2  fa-lg "></i>Favorilerim
                                 </Link>
 
 

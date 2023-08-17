@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme="light"
+      theme="dark"
       className="custom-toast"
     />
 
